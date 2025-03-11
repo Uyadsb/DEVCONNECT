@@ -1,0 +1,17 @@
+dart account apps fihom cordinations d'utilisateurs
+kol account endo profile (one to one realtion)      
+kol profile endo skills (many to many relation)
+skills drthom f apps whadhom puisque 9ader ykonon bzaf (projets, competances.... )
+# drk ndir api de login et signup
+ en plus de permission pour changer le mot de pass ou les informations 
+nakhdam b abstract user
+ndir kol haja fi app whadha 
+knt hadir media dossier ble temps de creation 
+defaul images kifh ndirou t3 mra wla rajl : fct dirha (def save()) fl class t3 models
+nrigle fields required
+dert profile create automaticly and delete with the user but should be modify
+drt views t user ( login, signup, detail)....
+khdamt authentication with jwt (token)
+ndir logout / avec jwt blacklist
+
+mazal view t3 profile w skills 
