@@ -24,9 +24,16 @@ class UserViewsets(viewsets.ModelViewSet):
 
 # signup view
 class SignUpView(CreateAPIView):
-    queryset = User.objects.all()
     serializer_class = SignUpSerializer  
     permission_classes = [permissions.AllowAny]
+    
+    def get_queryset(self):
+        return User.objects.all()
+        
+    def get(self, request, *args, **kwargs):
+        return Response({"error": "Méthode GET non autorisée"}, status=405)
+
+
 
 # login view
 class LoginView(APIView):

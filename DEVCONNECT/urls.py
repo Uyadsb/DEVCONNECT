@@ -8,7 +8,8 @@ urlpatterns = [
     path('a/', admin.site.urls),
     path('ip/', include('profiles.urls')),
     # path('api/', include('skills.urls')),
-    path('i/', include('accounts.urls')),    
+    path('accounts/', include('accounts.urls')),
+    # path('i/', include('accounts.urls')),   
 ] 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
