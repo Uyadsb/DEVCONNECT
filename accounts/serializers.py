@@ -3,13 +3,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.db.models import Q
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import get_user_model
 
 
-class UserSerializer(serializers.ModelSerializer):
+User = get_user_model()
+
+class UserSerializer(serializers.ModelSerializer):    
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'birthdate']
-
 
 
 class SignUpSerializer(serializers.ModelSerializer):
@@ -17,7 +19,7 @@ class SignUpSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User  
-        fields = ['id', 'username', 'first_name', 'last_name','email', 'password', 'password2']
+        fields = ['id', 'username', 'first_name', 'last_name', 'email', 'password', 'password2', 'birthdate', 'sex']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -47,7 +49,9 @@ class LoginSerializer(serializers.Serializer):
         if not identifier or not password:
             raise serializers.ValidationError("Les identifiants sont requis pour se connecter.")
         
-        user = authenticate(username=identifier, password=password)
+        # Pass the identifier as 'username' parameter to match what the backend expects
+        user = authenticate(request=self.context.get('request'), 
+                            username=identifier, password=password)
         
         if not user:
             raise serializers.ValidationError("Identifiants invalid !")

@@ -8,9 +8,9 @@ class User(AbstractUser):
     # Override the fields you want to make required
     email = models.EmailField(unique=True, blank=False, null=False)
     first_name = models.CharField(max_length=150, blank=False, null=False)
-    last_name = models.CharField(max_length=150, blank=False, null=False)
-    birthdate = models.DateField(blank=False, null=False)
-    
+    last_name = models.CharField(max_length=150, blank=False, null=False)   
+    birthdate = models.DateField(null=True, blank=True)
+ 
     
     SEX_CHOICES = [
     ("male", 'Male'),

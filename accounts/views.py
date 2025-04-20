@@ -5,7 +5,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView
-from rest_framework import status
+from rest_framework import status, serializers
 from rest_framework.views import APIView
 from django.contrib.auth import get_user_model
 
@@ -29,7 +29,15 @@ class SignUpView(CreateAPIView):
     
     def get_queryset(self):
         return User.objects.all()
-        
+    
+    
+    def perform_create(self, serializer):
+        user = serializer.save()
+        if not isinstance(user, User):  # Vérifie si user est bien une instance du modèle User
+            raise serializers.ValidationError("Erreur lors de la création de l'utilisateur")
+        return user 
+
+
     def get(self, request, *args, **kwargs):
         return Response({"error": "Méthode GET non autorisée"}, status=405)
 

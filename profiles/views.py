@@ -7,7 +7,7 @@ from rest_framework.routers import DefaultRouter
 
 # Create your views here.
 class ProfileViewSets(viewsets.ModelViewSet):
-    serializers_class = ProfileSerializer
+    serializer_class = ProfileSerializer
     permission_classes = [permissions.IsAuthenticated]  
         
     def get_queryset(self):
