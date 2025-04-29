@@ -1,14 +1,17 @@
 from rest_framework import viewsets, permissions
 from .serializers import ProfileSerializer
-from django.contrib.auth.decorators import login_required 
 from .models import Profile
 from rest_framework.routers import DefaultRouter
+from .permissions import IsSelfForWrite
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
 
-# Create your views here.
 class ProfileViewSets(viewsets.ModelViewSet):
+    queryset = User.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = [permissions.IsAuthenticated]  
-        
-    def get_queryset(self):
-        return Profile.objects.filter(user=self.request.user)
+    permission_classes = [IsSelfForWrite]
+
+    def perform_create(self, serializer):
+        # Attach the logged-in user to the created instance if needed
+        serializer.save()

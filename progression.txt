@@ -13,5 +13,6 @@ dert profile create automaticly and delete with the user but should be modify
 drt views t user ( login, signup, detail)....
 khdamt authentication with jwt (token)
 ndir logout / avec jwt blacklist
+dart view t3 profile w skills
 
-mazal view t3 profile w skills 
+blog post + like + comments
