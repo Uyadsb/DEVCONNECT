@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+
+# Ignorer les fichiers de configuration d'environnement virtuel
+venv/
+.env
+.venv/
+env/
+
+# Ignorer les fichiers générés par l’OS
+.DS_Store
+Thumbs.db
+
+# db files
+*.sqlite3
+db.sqlite3
+*.db
+
+# Ignorer les fichiers compilés
+*.o
+*.class
+
+# Ignorer les fichiers log
+*.log
+
+# vscode files
+.vscode/
