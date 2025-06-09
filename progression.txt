@@ -16,5 +16,7 @@ ndir logout / avec jwt blacklist
 dart view t3 profile w skills
 drt models w serialisers of posts + likes + comments
 et aussi zdt drt sytem repo post ychabah ll github (t9dr thot fih files et mm folders w pictures)
+drt views t3 likes
+drt views folder, file, repo, post, 
 
-mazal views t3hom
+it does'nt support importing folder with its content
