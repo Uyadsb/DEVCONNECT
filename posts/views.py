@@ -49,20 +49,15 @@ class LikePostView(views.APIView):
             return Response({"detail": "Like does not exist."}, status=status.HTTP_404_NOT_FOUND)
 
 
-class FileView(MultiFileUploadMixin, views.APIView):
+class FileView(MultiFileUploadMixin, viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = FileSerializer
     queryset = File.objects.all()
     
-    def get(self, request, file_id):
-        try:
-            file = File.objects.get(id=file_id)
-            serializer = self.serializer_class(file)
-            return Response(serializer.data)
-        except File.DoesNotExist:
-            return Response({"detail": "File not found."}, status=status.HTTP_404_NOT_FOUND)
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
     
-    def post(self, request):
+    def create(self, request):
         # Handle multiple file uploads
         return self.handle_multi_file_upload(request, self.serializer_class, extra_data={'user': request.user})
     
@@ -74,17 +69,6 @@ class FolderView(viewsets.ModelViewSet):
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
     
-class RepoView(MultiFileUploadMixin ,viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
-    serializer_class = RepoSerializer
-    queryset = Repo.objects.all()
-    
-    def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
-    
-    def post(self, request):
-        # Handle multiple file uploads
-        return self.handle_multi_file_upload(request, self.serializer_class, extra_data={'user': request.user})
 
 class PostView(MultiFileUploadMixin, viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
@@ -97,7 +81,7 @@ class PostView(MultiFileUploadMixin, viewsets.ModelViewSet):
             return self.queryset.filter(user_id=user_id)
         return self.queryset  # Return all posts if no user_id
     
-    def post(self, request):
+    def create(self, request):
         # Handle multiple file uploads
         return self.handle_multi_file_upload(request, self.serializer_class, extra_data={'user': request.user})
     
