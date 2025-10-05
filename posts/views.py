@@ -72,9 +72,17 @@ class PostView(MultiFileUploadMixin, viewsets.ModelViewSet):
         return self.queryset  # Return all posts if no user_id
     
     def create(self, request):
-        # Handle multiple file uploads
-        return self.handle_multi_file_upload(request, self.serializer_class, extra_data={'user': request.user})
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)  # Use perform_create pattern
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+
 class CommentView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = CommentSerializer

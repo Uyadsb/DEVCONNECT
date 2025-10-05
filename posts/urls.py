@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import LikePostView, CommentView, FileView, PostView, RepoView, FolderView
+from .views import LikePostView, CommentView, FileView, PostView
 
 router = DefaultRouter()
 # Register all ViewSets with the router

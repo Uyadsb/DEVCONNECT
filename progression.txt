@@ -21,3 +21,5 @@ drt views folder, file, repo, post,
 i made repos alone and posts alone (independent)
 
 it does'nt support importing folder with its content in repos?
+
+wsalt ll 8 fi claud.ai

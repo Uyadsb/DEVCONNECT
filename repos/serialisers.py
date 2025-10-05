@@ -15,7 +15,7 @@ class FolderSerializer(serializers.ModelSerializer):
 
 class FileSerializer(serializers.ModelSerializer):
     file = serializers.FileField(required=True)
-    folder = FolderSerializer
+    folder = FolderSerializer(read_only=True)  
     class Meta:
         model = File
         fields = ['id', 'name', 'folder', 'file', 'created_at']

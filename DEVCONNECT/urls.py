@@ -10,6 +10,7 @@ urlpatterns = [
     path('api/', include('skills.urls')),
     path('accounts/', include('accounts.urls')),  
     path('posts/', include('posts.urls')),
+    path('repos/', include('repos.urls')),
 ] 
 
 if settings.DEBUG:

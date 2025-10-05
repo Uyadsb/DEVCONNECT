@@ -21,7 +21,7 @@ def delete_profile(sender, instance, **kwargs):
     profile = instance.profile
     
     # delete the profile image
-    if profile.avatar and profile.avatar.basename not in ['male.jpg', 'female.jbg']:
+    if profile.avatar and profile.avatar.name not in ['male.jpg', 'female.jpg']:  # was 'female.jbg'
         avatar_path = profile.avatar.path
         if os.path.isfile(avatar_path):
             os.remove(avatar_path)

@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'profiles',
     'skills',
     'posts',
-
+    'repos',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

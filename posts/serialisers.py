@@ -13,14 +13,12 @@ class FileSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     picture = serializers.ImageField(required=False)
     file = serializers.FileField(required=False)
+    user = UserSerializer(read_only=True)  # Add this
+    
     class Meta:
         model = Post
-        fields = ['id', 'title', 'content', 'picture', 'file', 'created_at', 'updated_at']
-        read_only_fields = ['id', 'created_at', 'updated_at']
-        extra_kwargs = {
-            'file': {'required': False}
-        }
-        
+        fields = ['id', 'user', 'title', 'content', 'picture', 'file', 'created_at', 'updated_at']
+
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
