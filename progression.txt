@@ -18,5 +18,6 @@ drt models w serialisers of posts + likes + comments
 et aussi zdt drt sytem repo post ychabah ll github (t9dr thot fih files et mm folders w pictures)
 drt views t3 likes
 drt views folder, file, repo, post, 
+i made repos alone and posts alone (independent)
 
-it does'nt support importing folder with its content
+it does'nt support importing folder with its content in repos?

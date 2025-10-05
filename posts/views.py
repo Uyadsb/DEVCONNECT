@@ -3,14 +3,12 @@ from rest_framework import viewsets
 
 from .serialisers import (
     FileSerializer,
-    FolderSerializer,
-    RepoSerializer,
     LikeSerializer,
     PostSerializer,
     CommentSerializer
 )
 from rest_framework import permissions, status
-from .models import File, Folder, Repo, Like, Post, Comment
+from .models import File, Like, Post, Comment
 from rest_framework.response import Response
 from .utils import MultiFileUploadMixin
 
@@ -60,14 +58,6 @@ class FileView(MultiFileUploadMixin, viewsets.ModelViewSet):
     def create(self, request):
         # Handle multiple file uploads
         return self.handle_multi_file_upload(request, self.serializer_class, extra_data={'user': request.user})
-    
-class FolderView(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
-    serializer_class = FolderSerializer
-    queryset = Folder.objects.all()
-    
-    def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
     
 
 class PostView(MultiFileUploadMixin, viewsets.ModelViewSet):
